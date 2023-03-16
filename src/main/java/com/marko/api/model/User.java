@@ -13,6 +13,6 @@ public class User {
     private Integer id;
     private String firstname;
     private String lastname;
-    private String username;
+    private String email;
 
 }
