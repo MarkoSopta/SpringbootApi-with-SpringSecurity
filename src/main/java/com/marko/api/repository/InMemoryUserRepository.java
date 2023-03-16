@@ -17,15 +17,15 @@ public class InMemoryUserRepository {
         DATABASE.add(new User(3,"todd","howard","thod@gmail.com"));
     }
 
-    void addUser(User user){
+    public void addUser(User user){
         DATABASE.add(user);
     }
 
-    List<User> getAllUsers(){
+    public  List<User> getAllUsers(){
         return List.copyOf(DATABASE);
     }
 
-    User findById(Integer id){
+    public  User findById(Integer id){
         return DATABASE
                 .stream()
                 .filter(usr -> id.equals(usr.getId()))
@@ -33,7 +33,7 @@ public class InMemoryUserRepository {
                 .orElseThrow();
     }
 
-    void updateUser(User user){
+    public  void updateUser(User user){
         User existingUser = DATABASE.get(user.getId());
 
         existingUser.setFirstname(user.getFirstname());
@@ -42,7 +42,7 @@ public class InMemoryUserRepository {
         DATABASE.set(existingUser.getId(),existingUser);
     }
 
-    Boolean deleteById(Integer id)    {
+    public  Boolean deleteById(Integer id)    {
         User user = DATABASE
                 .stream()
                 .filter(usr -> id.equals(usr.getId()))
