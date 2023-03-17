@@ -6,10 +6,11 @@ import org.springframework.stereotype.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static java.lang.Boolean.TRUE;
 
 @Repository
-public class InMemoryUserRepository {
+public class InMemoryUserRepository  {
     private static final List<User> DATABASE = new ArrayList<>();
     static {
         DATABASE.add(new User(1,"test","tset","test@gmail.com"));
@@ -17,8 +18,10 @@ public class InMemoryUserRepository {
         DATABASE.add(new User(3,"todd","howard","thod@gmail.com"));
     }
 
-    public void addUser(User user){
+    public User addUser(User user){
+
         DATABASE.add(user);
+        return user;
     }
 
     public  List<User> getAllUsers(){
@@ -33,14 +36,9 @@ public class InMemoryUserRepository {
                 .orElseThrow();
     }
 
-    public  void updateUser(User user){
-        User existingUser = DATABASE.get(user.getId());
-
-        existingUser.setFirstname(user.getFirstname());
-        existingUser.setLastname(user.getLastname());
-        existingUser.setEmail(user.getEmail());
-        DATABASE.set(existingUser.getId(),existingUser);
-    }
+//    public  User updateUser(Integer id, UpdateUserDTO updateUserDTO){
+//        Optional<User> optionalUser = User.findById
+//    }
 
     public  Boolean deleteById(Integer id)    {
         User user = DATABASE
