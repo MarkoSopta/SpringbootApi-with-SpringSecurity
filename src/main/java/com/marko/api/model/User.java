@@ -1,19 +1,20 @@
 package com.marko.api.model;
 
-import jakarta.persistence.Entity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
+import lombok.*;
+
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+
 public class User {
+
     @Id
+    @GeneratedValue
     private Integer id;
     private String firstname;
     private String lastname;

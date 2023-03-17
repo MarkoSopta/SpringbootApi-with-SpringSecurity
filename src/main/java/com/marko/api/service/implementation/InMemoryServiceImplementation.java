@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @RequiredArgsConstructor
 @Service
-public class InMemoryServiceImplementation implements UserService {
+public class InMemoryServiceImplementation {
     private final InMemoryUserRepository inMemoryUserRepository;
 
-    @Override
+
     public User addUser(User user) {
         return inMemoryUserRepository.addUser(user);
     }
 
-    @Override
+
     public List<User> getAllUsers() {
         return inMemoryUserRepository.getAllUsers();
     }
 
-    @Override
+
     public User findById(Integer id) {
         return inMemoryUserRepository.findById(id);
     }
@@ -32,7 +32,7 @@ public class InMemoryServiceImplementation implements UserService {
 //       return inMemoryUserRepository.updateUser(user);
 //    }
 
-    @Override
+
     public Boolean deleteById(Integer id) {
         return inMemoryUserRepository.deleteById(id);
     }
