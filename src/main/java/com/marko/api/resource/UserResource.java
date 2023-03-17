@@ -1,53 +1,53 @@
-package com.marko.api.resource;
-
-import com.marko.api.model.User;
-import com.marko.api.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import java.net.URI;
-import java.util.List;
-
-import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
-
-@RestController
-@RequiredArgsConstructor
-@RequestMapping("/api/users")
-public class UserResource {
-    private final UserService userService;
-
-    @GetMapping
-    public ResponseEntity<List<User>> getUsers(){
-        return ResponseEntity.ok(userService.getAllUsers());
-    }
-    @GetMapping("{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Integer id){
-        return ResponseEntity.ok(userService.findById(id));
-    }
-    @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user){
-        user.setId(userService.getAllUsers().size()+1);
-        return ResponseEntity.created(getLocation(user.getId())).body((userService.addUser(user)));
-    }
-
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<Boolean> deleteUser(@PathVariable ("id")Integer id) {
-        return ResponseEntity.ok(userService.deleteById(id));
-    }
-
-
-//    @PutMapping("{id}")
-//    public ResponseEntity<User> updateUser(@PathVariable ("id") Integer id,@RequestBody User userToUpdate ) {
-//        return ResponseEntity.ok(userService.updateUser(userToUpdate));
+//package com.marko.api.resource;
+//
+//import com.marko.api.model.User;
+//import com.marko.api.service.UserService;
+//import lombok.RequiredArgsConstructor;
+//import org.springframework.http.ResponseEntity;
+//import org.springframework.web.bind.annotation.*;
+//import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+//import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+//
+//import java.net.URI;
+//import java.util.List;
+//
+//import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.*;
+//
+//@RestController
+//@RequiredArgsConstructor
+//@RequestMapping("/api/users")
+//public class UserResource {
+//    private final UserService userService;
+//
+//    @GetMapping
+//    public ResponseEntity<List<User>> getUsers(){
+//        return ResponseEntity.ok(userService.getAllUsers());
 //    }
-
-    private URI getLocation(Integer id) {
-        return fromCurrentRequest()
-                .path("{id}")
-                .buildAndExpand(id).toUri();
-    }
-}
+//    @GetMapping("{id}")
+//    public ResponseEntity<User> getUser(@PathVariable("id") Integer id){
+//        return ResponseEntity.ok(userService.findById(id));
+//    }
+//    @PostMapping
+//    public ResponseEntity<User> addUser(@RequestBody User user){
+//        user.setId(userService.getAllUsers().size()+1);
+//        return ResponseEntity.created(getLocation(user.getId())).body((userService.addUser(user)));
+//    }
+//
+//
+//    @DeleteMapping("{id}")
+//    public ResponseEntity<Boolean> deleteUser(@PathVariable ("id")Integer id) {
+//        return ResponseEntity.ok(userService.deleteById(id));
+//    }
+//
+//
+////    @PutMapping("{id}")
+////    public ResponseEntity<User> updateUser(@PathVariable ("id") Integer id,@RequestBody User userToUpdate ) {
+////        return ResponseEntity.ok(userService.updateUser(userToUpdate));
+////    }
+//
+//    private URI getLocation(Integer id) {
+//        return fromCurrentRequest()
+//                .path("{id}")
+//                .buildAndExpand(id).toUri();
+//    }
+//}
