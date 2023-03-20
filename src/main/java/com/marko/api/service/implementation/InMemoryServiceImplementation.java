@@ -1,5 +1,6 @@
 package com.marko.api.service.implementation;
 
+import com.marko.api.dto.UserUpdateDTO;
 import com.marko.api.model.User;
 import com.marko.api.repository.InMemoryUserRepository;
 import com.marko.api.service.UserService;
@@ -32,9 +33,10 @@ public class InMemoryServiceImplementation implements UserService {
     }
 
     @Override
-    public User updateUser(Integer id, User user) {
+    public User updateUser(Integer id, UserUpdateDTO userUpdateDTO) {
         return null;
     }
+
 
     public Boolean deleteById(Integer id) {
         return inMemoryUserRepository.deleteById(id);

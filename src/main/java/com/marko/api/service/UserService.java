@@ -1,5 +1,6 @@
 package com.marko.api.service;
 
+import com.marko.api.dto.UserUpdateDTO;
 import com.marko.api.model.User;
 
 
@@ -14,7 +15,7 @@ public interface UserService {
     //Get 1 user
     User findById(Integer id);
     //Update user
-    User updateUser(Integer id, User user);
+    User updateUser(Integer id,UserUpdateDTO userUpdateDTO);
     //Delete user
     Boolean deleteById(Integer id);
 }

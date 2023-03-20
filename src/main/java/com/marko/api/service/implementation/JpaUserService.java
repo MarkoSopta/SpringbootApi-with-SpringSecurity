@@ -1,6 +1,5 @@
 package com.marko.api.service.implementation;
 
-import com.marko.api.dto.AddUserDto;
 import com.marko.api.dto.UserUpdateDTO;
 import com.marko.api.model.User;
 import com.marko.api.repository.JPAUserRepo;
@@ -9,10 +8,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
+
 @Qualifier(value = "mySQLUserService")
 
 @RequiredArgsConstructor
@@ -22,18 +21,10 @@ public class JpaUserService implements UserService {
     @Autowired
     private final JPAUserRepo jpaUserRepo;
 
-    public void addUser(@RequestBody AddUserDto addUserDto) {
-        User user = new User();
-        user.setFirstname(addUserDto.firstname());
-        user.setLastname(addUserDto.lastname());
-        user.setEmail(addUserDto.email());
-        jpaUserRepo.save(user);
-    }
-
 
     @Override
     public User addUser(User user) {
-        return null;
+        return jpaUserRepo.save(user);
     }
 
     public List<User> getAllUsers() {
@@ -51,13 +42,10 @@ public class JpaUserService implements UserService {
         return null;
     }
 
-    @Override
-    public User updateUser(Integer id, User user) {
-        return null;
-    }
 
 
-    public void updateUser(Integer id, UserUpdateDTO userUpdateDTO) {
+
+    public User updateUser(Integer id, UserUpdateDTO userUpdateDTO) {
         Optional<User> optUser = jpaUserRepo.findById(id);
         if (optUser.isPresent()) {
             User user = optUser.get();
@@ -66,8 +54,9 @@ public class JpaUserService implements UserService {
             user.setEmail(userUpdateDTO.email());
             jpaUserRepo.save(user);
         } else {
-            System.out.println("User bearing the id of " + id + " does not exist");
+           System.out.println("User bearing the id of " + id + " does not exist");
         }
+        return null;
     }
 
 

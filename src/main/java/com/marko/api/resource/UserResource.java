@@ -1,10 +1,12 @@
 package com.marko.api.resource;
 
+import com.marko.api.dto.UserUpdateDTO;
 import com.marko.api.model.User;
 import com.marko.api.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -16,7 +18,7 @@ import static org.springframework.web.servlet.support.ServletUriComponentsBuilde
 
 @RestController
 //@RequiredArgsConstructor
-@RequestMapping("/api/users")
+@RequestMapping(path = "/api/users")
 
 
 public class UserResource {
@@ -48,10 +50,10 @@ public class UserResource {
     }
 
 
-//    @PutMapping("{id}")
-//    public ResponseEntity<User> updateUser(@PathVariable ("id") Integer id,@RequestBody User userToUpdate ) {
-//        return ResponseEntity.ok(userService.updateUser(userToUpdate));
-//    }
+    @PutMapping("{id}")
+   public ResponseEntity<User> updateUser(@PathVariable ("id") Integer id,@RequestBody UserUpdateDTO userUpdateDTO ) {
+       return ResponseEntity.ok(userService.updateUser(id,userUpdateDTO));
+   }
 
     private URI getLocation(Integer id) {
         return fromCurrentRequest()
