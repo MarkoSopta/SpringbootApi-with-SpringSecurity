@@ -4,18 +4,21 @@ import com.marko.api.dto.AddUserDto;
 import com.marko.api.dto.UserUpdateDTO;
 import com.marko.api.model.User;
 import com.marko.api.repository.JPAUserRepo;
+import com.marko.api.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
+@Qualifier(value = "mySQLUserService")
 
 @RequiredArgsConstructor
 @Service
 
-public class JpaUserService {
+public class JpaUserService implements UserService {
     @Autowired
     private final JPAUserRepo jpaUserRepo;
 
@@ -27,6 +30,11 @@ public class JpaUserService {
         jpaUserRepo.save(user);
     }
 
+
+    @Override
+    public User addUser(User user) {
+        return null;
+    }
 
     public List<User> getAllUsers() {
         return jpaUserRepo.findAll();
@@ -40,6 +48,11 @@ public class JpaUserService {
         } else {
             System.out.println("User no found");
         }
+        return null;
+    }
+
+    @Override
+    public User updateUser(Integer id, User user) {
         return null;
     }
 

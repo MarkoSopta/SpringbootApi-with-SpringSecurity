@@ -4,12 +4,16 @@ import com.marko.api.model.User;
 import com.marko.api.repository.InMemoryUserRepository;
 import com.marko.api.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+
+@Qualifier(value = "inMemory")
 @RequiredArgsConstructor
 @Service
-public class InMemoryServiceImplementation {
+public class InMemoryServiceImplementation implements UserService {
     private final InMemoryUserRepository inMemoryUserRepository;
 
 
@@ -27,11 +31,10 @@ public class InMemoryServiceImplementation {
         return inMemoryUserRepository.findById(id);
     }
 
-//    @Override
-//    public User updateUser(User user) {
-//       return inMemoryUserRepository.updateUser(user);
-//    }
-
+    @Override
+    public User updateUser(Integer id, User user) {
+        return null;
+    }
 
     public Boolean deleteById(Integer id) {
         return inMemoryUserRepository.deleteById(id);
