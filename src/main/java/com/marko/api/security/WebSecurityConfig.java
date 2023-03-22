@@ -20,11 +20,12 @@ import static org.springframework.http.HttpMethod.POST;
 
 
 public class WebSecurityConfig {
+    private final AccountAuthProvider accountAuthProvider;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
-        authenticationManagerBuilder.authenticationProvider(null);
+        authenticationManagerBuilder.authenticationProvider(accountAuthProvider);
         http.csrf().disable();
         http.authorizeRequests()
                 .dispatcherTypeMatchers(POST, DispatcherType.valueOf("/api/accounts/**")).permitAll();
