@@ -39,7 +39,7 @@ public class UserResource {
     }
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user){
-        user.setId(userService.getAllUsers().size()+1);
+        //user.setId(userService.getAllUsers().size()+1);
         return ResponseEntity.created(getLocation(user.getId())).body((userService.addUser(user)));
     }
 
@@ -55,7 +55,7 @@ public class UserResource {
        return ResponseEntity.ok(userService.updateUser(id,userUpdateDTO));
    }
 
-    private URI getLocation(Integer id) {
+    protected static URI getLocation(Integer id) {
         return fromCurrentRequest()
                 .path("{id}")
                 .buildAndExpand(id).toUri();
