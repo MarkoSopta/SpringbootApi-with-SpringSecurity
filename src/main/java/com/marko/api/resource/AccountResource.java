@@ -12,9 +12,9 @@ import static com.marko.api.resource.UserResource.getLocation;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(path = "/api/accounts")
+@RequestMapping(path = "/api/account")
 public class AccountResource {
-    private AccountService accountService;
+    private final AccountService accountService;
 
 
     @PostMapping
